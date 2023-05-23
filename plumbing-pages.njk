@@ -1,23 +1,12 @@
 ---
+layout: base.njk
 pagination:
     data: places
     size: 1
     alias: place
 permalink: "plumbing/{{ place.slug }}.html"
+eleventyComputed:
+    title: "Plumbing in {{ place.name }}"
 ---
 
-{% set templates = 2 %}
-
-{% for i in range(0, templates) -%}
-  <p>{{ i }}</p>,
-{%- endfor %}
-
-<p>{{ username }}</p>
-
-<p>{{ place.name }}</p>
-<p>{{ place.countySlug }}</p>
-<p>{{ place.postcode }}</p>
-<p>{{ place.tel }}</p>
-<p>{{ place.info }}</p>
-
-{% import './places.njk' %}
+<p>{{place.name}}</p>
