@@ -7,3 +7,49 @@ This unfortunately doesn't support any sort of nested iteration so we have to mo
 To achieve this we need to run the `utils/buildData.js` which pulls togther places and services info and saves the output to `_data/places.json` whihc is then used to generate the pages.
 
 If any data is changed it has to be updated in the `utils` folder and the script rerun to update the master data file.
+
+# To-do
+
+Need to work out how to take the service related reviews and filter them by town in eleventyComputed.js so we can add backup reviews if there aren't enough, as follows:
+
+## latest reviews for each service for a town
+
+/api/reviews/service-town/{service_id}/{town_id}
+
+- get reviews matching service and town
+- if there arent enough specific reviews then fill with the latest by service and county
+- if there arent enough specific reviews then fill with the latest by service
+- as a last resort if there arent enough specific reviews then fill with the latest
+- remove duplicate reviews caused by the merge
+
+## latest reviews for each service for a county
+
+/api/reviews/service-county/{service_id}/{county_id}
+
+- get reviews matching service and county
+- if there arent enough specific reviews then fill with the latest by service
+- as a last resort if there arent enough specific reviews then fill with the latest
+- remove duplicate reviews caused by the merge
+
+## latest reviews for each service
+
+/api/reviews/service/{service_id}
+
+- get reviews matching service
+- if there arent enough specific reviews then fill with the latest
+- remove duplicate reviews caused by the merge
+
+## latest reviews for a county
+
+/api/{website}/reviews/county/{county_id}
+
+- get reviews matching county
+- if there arent enough specific reviews then fill with the latest by county
+- as a last resort if there arent enough specific reviews then fill with the latest
+- remove duplicate reviews caused by the merge
+
+## latest reviews
+
+/api/{website}/reviews
+
+- get latest reviews
