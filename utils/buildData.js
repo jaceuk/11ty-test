@@ -7,6 +7,7 @@ try {
   // reading a JSON file synchronously
   servicesData = fs.readFileSync('services.json');
   placesData = fs.readFileSync('places.json');
+  reviewsData = fs.readFileSync('reviews.json');
 } catch (error) {
   console.error(error);
   throw error;
@@ -15,10 +16,12 @@ try {
 // parsing the JSON content
 const services = JSON.parse(servicesData);
 const places = JSON.parse(placesData);
+const reviews = JSON.parse(reviewsData);
 
-// add 2 service templates as standard
+// build template section
 places.forEach((place, index) => {
   place.templates = {};
+
   services.forEach((service) => {
     // services have 2 templates by default
     if (service.templates === 2) {
@@ -41,7 +44,21 @@ places.forEach((place, index) => {
   });
 });
 
-// converting the JSON object to a string
+// build reviews section
+places.forEach((place) => {
+  place.reviews = {};
+  let filteredReviews = [];
+
+  services.forEach((service) => {
+    reviews.forEach((review) => {
+      if (review.postcode === place.postcode) {
+        filteredReviews.push(review);
+      }
+    });
+    place.reviews[service.slug] = [filteredReviews];
+  });
+});
+
 const placesJson = JSON.stringify(places);
 
 // writing the JSON string content to a file

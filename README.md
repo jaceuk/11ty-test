@@ -4,7 +4,7 @@ We're using the pagination feature of 11ty to enable the creartion of all the st
 
 This unfortunately doesn't support any sort of nested iteration so we have to mould the data into a structure that means we can achieve everything in one iteration.
 
-To achieve this we need to run the `utils/buildData.js` which pulls togther places and services info and saves the output to `_data/places.json` whihc is then used to generate the pages.
+To achieve this we need to run the `utils/buildData.js` which pulls togther places and services info and saves the output to `_data/places.json` which is then used to generate the pages.
 
 If any data is changed it has to be updated in the `utils` folder and the script rerun to update the master data file.
 
@@ -44,7 +44,6 @@ Need to work out how to take the service related reviews and filter them by town
 /api/{website}/reviews/county/{county_id}
 
 - get reviews matching county
-- if there arent enough specific reviews then fill with the latest by county
 - as a last resort if there arent enough specific reviews then fill with the latest
 - remove duplicate reviews caused by the merge
 
@@ -53,3 +52,7 @@ Need to work out how to take the service related reviews and filter them by town
 /api/{website}/reviews
 
 - get latest reviews
+
+Can we maybe do this by adding service related reviews to the places.json data?
+
+Need to look at breaking down the data file into smaller ones!!
