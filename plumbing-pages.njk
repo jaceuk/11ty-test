@@ -1,15 +1,13 @@
 ---
 layout: base.njk
 pagination:
-    data: places
+    data: plumbing-places
     size: 1
     alias: place
 permalink: "plumbing/{{ place.slug }}.html"
 ---
 
 <p>Reviews for {{ place.name }}, {{ place.postcode }}</p>
-{% for review in plumbingReviews %}
-    {% if review.postcode === place.postcode %}
-        <p>{{ review.title }}</p>
-    {% endif %}
+{% for review in place.reviews %}
+    <p>{{ review.title }}</p>
 {% endfor %}

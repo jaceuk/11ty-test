@@ -4,7 +4,7 @@ We're using the pagination feature of 11ty to enable the creartion of all the st
 
 This unfortunately doesn't support any sort of nested iteration so we have to mould the data into a structure that means we can achieve everything in one iteration.
 
-To achieve this we need to run the `utils/buildData.js` which pulls togther places and services info and saves the output to `_data/places.json` which is then used to generate the pages.
+To achieve this we need to run the `utils/buildData.js` which pulls togther places and services, places and reviews saves seperate files for each serice to `_data/[SERIVE_SLUG]-places.json` which is then used to generate the pages.
 
 If any data is changed it has to be updated in the `utils` folder and the script rerun to update the master data file.
 
@@ -31,13 +31,12 @@ Need to work out how to take the service related reviews and filter them by town
 - as a last resort if there arent enough specific reviews then fill with the latest
 - remove duplicate reviews caused by the merge
 
-## latest reviews for each service
+~~## latest reviews for each service~~
 
-/api/reviews/service/{service_id}
-
-- get reviews matching service
-- if there arent enough specific reviews then fill with the latest
-- remove duplicate reviews caused by the merge
+~~/api/reviews/service/{service_id}~~
+~~- get reviews matching service~~
+~~- if there arent enough specific reviews then fill with the latest~~
+~~- remove duplicate reviews caused by the merge~~
 
 ## latest reviews for a county
 
@@ -47,12 +46,9 @@ Need to work out how to take the service related reviews and filter them by town
 - as a last resort if there arent enough specific reviews then fill with the latest
 - remove duplicate reviews caused by the merge
 
-## latest reviews
+~~## latest reviews~~
 
-/api/{website}/reviews
+~~/api/{website}/reviews~~
+~~- get latest reviews~~
 
-- get latest reviews
-
-Can we maybe do this by adding service related reviews to the places.json data?
-
-Need to look at breaking down the data file into smaller ones!!
+Add fallbacks to pad out where services/towns don't have 12 reviews
